@@ -7,6 +7,7 @@ local player = game.Players.LocalPlayer
 local MainUI = UILibrary.Load("BingusHub")
 local FirstPage = MainUI.AddPage("Home")
 local SecondPage = MainUI.AddPage("LocalPlayer")
+local ThirdPage = MainUI.AddPage("Scripts")
 -- Home Page
 local WelcomeLabel = FirstPage.AddLabel("Hello "..player.Name)
 
@@ -56,4 +57,60 @@ local NameButton = SecondPage.AddButton("Hide Name", function()
     v:Destroy()
         end
     end
+end)
+
+-- Scripts Page
+local IYButton = ThirdPage.AddButton("Infinite Yield", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+local HydroxideButton = ThirdPage.AddButton("Hydroxide", function()
+    local owner = "Upbolt"
+local branch = "revision"
+
+local function webImport(file)
+    return loadstring(game:HttpGetAsync(("https://raw.githubusercontent.com/%s/Hydroxide/%s/%s.lua"):format(owner, branch, file)), file .. '.lua')()
+end
+
+webImport("init")
+webImport("ui/main")
+end)
+local NoLimbsButton = ThirdPage.AddButton("No Limbs", function()
+    local forbiddent = {
+        "HumanoidRootPart";
+        "UpperTorso";
+        "LowerTorso";
+        "Torso";
+        "Head"
+    }
+    for _,v in pairs(player.Character:GetChildren()) do
+        local matching = table.find(forbiddent, v.Name)
+    if v:IsA("BasePart") and not matching then
+    v:Destroy()
+        end
+    end
+end)
+local HatSpinButton = ThirdPage.AddButton("Hat Spin", function()
+    local obese = game:GetService('Players')
+for i,v in pairs(obese.LocalPlayer.Character:GetChildren()) do
+if v.ClassName == "Accessory" then
+local stg = v.Handle:FindFirstChildOfClass("BodyForce")
+if stg == nil then
+local a = Instance.new("BodyPosition")
+local b = Instance.new("BodyAngularVelocity")
+a.Parent = v.Handle
+b.Parent = v.Handle
+v.Handle.AccessoryWeld:Destroy()
+b.AngularVelocity = Vector3.new(0,100,0)
+b.MaxTorque = Vector3.new(0,200,0)
+a.P = 30000
+a.D = 50
+game:GetService('RunService').Stepped:connect(function()
+a.Position = obese.LocalPlayer.Character.Head.Position
+end)
+end
+end
+end
+end)
+local GiantHeadButton = ThirdPage.AddButton("Giant Head", function()
+    loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/ProjectBoring/Head-Resize-v1/main/Head%20Size%20Obfuscated.lua'))()
 end)
