@@ -1,0 +1,59 @@
+local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
+
+-- Misc
+local player = game.Players.LocalPlayer
+
+-- Pages
+local MainUI = UILibrary.Load("BingusHub")
+local FirstPage = MainUI.AddPage("Home")
+local SecondPage = MainUI.AddPage("LocalPlayer")
+-- Home Page
+local WelcomeLabel = FirstPage.AddLabel("Hello "..player.Name)
+
+-- Local Player 
+local SpeedSlider = SecondPage.AddSlider("WalkSpeed", {Min = 0, Max = 500, Def = 16}, function(Value)
+    player.Character.Humanoid.WalkSpeed = Value
+end)
+local KillButton = SecondPage.AddButton("Suicide", function()
+    player.Character.Humanoid:TakeDamage(player.Character.Humanoid.Health)
+end)
+local StunToggle = SecondPage.AddToggle("Stun", false, function(toggled)
+   if toggled then
+     player.Character.Humanoid.PlatformStand = true
+     else
+        player.Character.Humanoid.PlatformStand = false
+    end
+end)
+local SwimToggle = SecondPage.AddToggle("Swim", false, function(toggled)
+   if toggled then
+       game.workspace.Gravity = 0
+       player.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+     player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+     else
+         game.workspace.Gravity = 196
+         player.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+        player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+    end
+end)
+local AnchorToggle = SecondPage.AddToggle("Anchor", false, function(toggled)
+    if toggled then
+    for _,v in pairs(player.Character:GetChildren()) do
+        if v:IsA("BasePart") and v.Name ~= "HumanoidRootPart" then
+        v.Anchored = true
+             end
+        end
+     else
+        for _,v in pairs(player.Character:GetChildren()) do
+        if v:IsA("BasePart") and v.Name ~= "HumanoidRootPart" then
+        v.Anchored = false
+            end
+        end
+    end
+end)
+local NameButton = SecondPage.AddButton("Hide Name", function()
+   for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+    if v:IsA("TextLabel") or v:IsA("ImageLabel") then
+    v:Destroy()
+        end
+    end
+end)
