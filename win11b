@@ -10,7 +10,7 @@ local SecondTab = menu.addTab("LocalPlayer", "LPTab", false, "")
 local SpeedSlider = SecondTab.addSlider("Speed Slider", "SPS", 0, 500, 16, true, "Character Speed", "7230130751", function(ex) 
     player.Character.Humanoid.WalkSpeed = ex
 end)
-local GravitySlider = SecondTab.addSlider("Gravity Slider", "GS", -100, 1000, 196, true, "Sets your workspace gravity", 7230130751, function(ex)
+local GravitySlider = SecondTab.addSlider("Gravity Slider", "GS", 0, 500, 196, true, "Sets your workspace gravity", 7230130751, function(ex)
     game.Workspace.Gravity = ex
     end)
 local KillButton = SecondTab.addButton("Suicide", "Die", function()
