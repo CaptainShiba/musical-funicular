@@ -1,0 +1,56 @@
+local Win11Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Skribb11es/Win11UILib/main/main.lua", true))()
+local player = game.Players.LocalPlayer
+
+-- Pages
+local menu = Win11Lib.createMenu("Windows 11", Enum.KeyCode.RightShift, true, 1200, 600, "", "Shiba", "Terrible Coder")
+local FirstTab = menu.addTab("Home", "HomeTab", true, "")
+local SecondTab = menu.addTab("LocalPlayer", "LPTab", false, "")
+
+-- First Tab
+local SpeedSlider = SecondTab.addSlider("Speed Slider", "SPS", 0, 500, 16, true, "Character Speed", "7230130751", function(ex) 
+    player.Character.Humanoid.WalkSpeed = ex
+end)
+local KillButton = SecondTab.addButton("Suicide", "Die", function()
+    player.Character.Humanoid:TakeDamage(player.Character.Humanoid.Health)
+end)
+local StunToggle = SecondTab.addToggle("Stun", "STF", "Stuns your character", false, function(toggled)
+     if toggled then
+     player.Character.Humanoid.PlatformStand = true
+     else
+        player.Character.Humanoid.PlatformStand = false
+    end
+end)
+local SwimToggle = SecondTab.addToggle("Swim", "STT", "Swim in midair", false, function(toggled)
+    if toggled then
+       game.workspace.Gravity = 0
+       player.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+     player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+     else
+         game.workspace.Gravity = 196
+         player.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+        player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+    end
+end)
+local AnchorToggle = SecondTab.addToggle("Anchor", "ATG", "Freezes your character", false, function(toggled)
+     if toggled then
+    for _,v in pairs(player.Character:GetChildren()) do
+        if v:IsA("BasePart") and v.Name ~= "HumanoidRootPart" then
+        v.Anchored = true
+             end
+        end
+     else
+        for _,v in pairs(player.Character:GetChildren()) do
+        if v:IsA("BasePart") and v.Name ~= "HumanoidRootPart" then
+        v.Anchored = false
+            end
+        end
+    end
+end)
+
+local NameButton = SecondTab.addButton("Anonymous", "Deletes your nametag and hats", function()
+    for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+    if v:IsA("TextLabel") or v:IsA("ImageLabel") or v:IsA("Accessory") then
+    v:Destroy()
+        end
+    end
+end)
