@@ -54,3 +54,28 @@ local NameButton = SecondTab.addButton("Anonymous", "Deletes your nametag and ha
         end
     end
 end)
+
+-- Sandy Shores
+if game.PlaceId == 6830111083 then
+local SSTab = menu.addTab("Sandy Shores", "SSTab", false, "")
+local FBIButton = SSTab.addButton("FBI Team", "Become edgy", function()
+    local ohString1 = "FBI"
+
+game:GetService("ReplicatedStorage").TeamChanger:FireServer(ohString1)
+end)
+local FBIButton = SSTab.addButton("DPS Team", "Become safe", function()
+    local ohString1 = "DPS"
+
+game:GetService("ReplicatedStorage").TeamChanger:FireServer(ohString1)
+end)
+local FBIButton = SSTab.addButton("SAHP Team", "Become a good driver", function()
+    local ohString1 = "SAHP"
+
+game:GetService("ReplicatedStorage").TeamChanger:FireServer(ohString1)
+end)
+local FBIButton = SSTab.addButton("Staff Team", "Become fat and ugly", function()
+    local ohString1 = "SERVER STAFF"
+
+game:GetService("ReplicatedStorage").TeamChanger:FireServer(ohString1)
+end)
+end
