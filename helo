@@ -52,8 +52,8 @@ local AnchorToggle = SecondPage.AddToggle("Anchor", false, function(toggled)
     end
 end)
 local NameButton = SecondPage.AddButton("Hide Name", function()
-   for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-    if v:IsA("TextLabel") or v:IsA("ImageLabel") then
+    for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+    if v:IsA("TextLabel") or v:IsA("ImageLabel") or v:IsA("Accessory") then
     v:Destroy()
         end
     end
