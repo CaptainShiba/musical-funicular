@@ -82,3 +82,10 @@ local FBIButton = SSTab.addButton("Staff Team", "Become fat and ugly", function(
 game:GetService("ReplicatedStorage").TeamChanger:FireServer(ohString1)
 end)
 end
+
+-- SCP Devolved
+if game.PlaceId == 4720397302 then
+local SDTab = menu.addTab("SCP Devolved", "SDTab", false, "")
+local SDFButton = SDTab.addButton("Give Tools", "Opens a new GUI", function()
+(loadstring)(game:HttpGetAsync('https://raw.githubusercontent.com/CaptainShiba/musical-funicular/main/SCPDF'))()
+end)
