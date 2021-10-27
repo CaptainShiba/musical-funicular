@@ -89,4 +89,11 @@ local SDTab = menu.addTab("SCP Devolved", "SDTab", false, "")
 local SDFButton = SDTab.addButton("Give Tools", "Opens a new GUI", function()
 (loadstring)(game:HttpGetAsync('https://raw.githubusercontent.com/CaptainShiba/musical-funicular/main/SCPDF'))()
 end)
+local SDNH = SDTab.addButton("SCP:D Nametag remover", "Deletes your nametag/hats", function()
+for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+    if v:IsA("BillboardGui") or v:IsA("Accessory") then
+        v:Destroy()
+        end
+    end
+end)
 end
